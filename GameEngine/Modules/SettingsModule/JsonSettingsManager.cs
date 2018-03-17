@@ -14,53 +14,60 @@ namespace GameEngine.Modules.SettingsModule
     {
         const string SettingsPath = @"settings.json";
 
-        public Settings Settings { private set; get; }
+        private Settings Settings;
 
         public JsonSettingsManager()
         {
             Settings = new Settings();
         }
 
-        public Settings GetSettings()
-        {
-            return Settings;
-        }
+        public Settings GetSettings() => Settings;
 
         public void LoadSettings()
         {
             bool isFileExist = File.Exists(SettingsPath);
             if (isFileExist)
             {
-                LoadSettingsFromFile();
+                bool isLoadSuccessful = LoadSettingsFromFile();
+                if (!isLoadSuccessful)
+                {
+                    CreateDefaultSettingsFile();
+                }
             }
             else
             {
-                CreateSettingsFile();
+                CreateDefaultSettingsFile();
             }
         }
 
-        public void SaveSettings()
+        public void SaveSettings(Settings settingsForSave)
         {
-            var jsonFormatter = new DataContractJsonSerializer(typeof(Settings));
             using (var fileInfo = new FileStream(SettingsPath, FileMode.Create))
             {
-                jsonFormatter.WriteObject(fileInfo, Settings);
+                var jsonFormatter = new DataContractJsonSerializer(typeof(Settings));
+                jsonFormatter.WriteObject(fileInfo, settingsForSave);
             }
         }
 
-        private void CreateSettingsFile()
+        private bool LoadSettingsFromFile()
         {
-            SaveSettings();
-        }
-
-        private void LoadSettingsFromFile()
-        {
-            var jsonFormatter = new DataContractJsonSerializer(typeof(Settings));
             using (var fileInfo = new FileStream(SettingsPath, FileMode.Open))
             {
-                var loadedSettings = (Settings)jsonFormatter.ReadObject(fileInfo);
+                var jsonFormatter = new DataContractJsonSerializer(typeof(Settings));
+                Settings loadedSettings = null;
+                try
+                {
+                    loadedSettings = (Settings)jsonFormatter.ReadObject(fileInfo);
+                }
+                catch (SerializationException)
+                {
+                    return false;
+                }
                 Settings.SetCustomSettings(loadedSettings);
+                return true;
             }
         }
+
+        private void CreateDefaultSettingsFile() => SaveSettings(Settings);
     }
 }

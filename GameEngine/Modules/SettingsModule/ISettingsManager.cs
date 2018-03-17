@@ -10,6 +10,6 @@ namespace GameEngine.Modules.SettingsModule
     {
         Settings GetSettings();
         void LoadSettings();
-        void SaveSettings();
+        void SaveSettings(Settings settingsForSave);
     }
 }
