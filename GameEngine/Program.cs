@@ -12,11 +12,9 @@ namespace GameEngine
 {
     class Program
     {
-        static Engine engine = null;
-
         static void Main(string[] args)
         {
-            engine = new Engine(new JsonSettingsManager());
+            var engine = new Engine(new JsonSettingsManager());
 
             engine.StartMainCycle();
         }

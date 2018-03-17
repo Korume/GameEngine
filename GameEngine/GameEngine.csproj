@@ -61,10 +61,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine.cs" />
-    <Compile Include="Modules\SettingsModule\ISettings.cs" />
+    <Compile Include="Modules\SceneModule\BaseEntity.cs" />
+    <Compile Include="Modules\SceneModule\Chunk.cs" />
+    <Compile Include="Modules\SceneModule\DynamicEntity.cs" />
+    <Compile Include="Modules\SceneModule\IScene.cs" />
+    <Compile Include="Modules\SceneModule\Scene.cs" />
+    <Compile Include="Modules\SceneModule\SceneManager.cs" />
+    <Compile Include="Modules\SceneModule\StaticEntity.cs" />
+    <Compile Include="Modules\SceneModule\World.cs" />
     <Compile Include="Modules\SettingsModule\Settings.cs" />
     <Compile Include="Modules\WindowModule\WindowManager.cs" />
-    <Compile Include="Modules\WindowModule\IWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\SettingsModule\ISettingsManager.cs" />
@@ -73,6 +79,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

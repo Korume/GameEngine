@@ -12,38 +12,34 @@ namespace GameEngine.Modules.WindowModule
 {
     public class WindowManager
     {
-        public RenderWindow Window { private set; get; }
-        public View View { private set; get; }
+        public RenderWindow MainWindow { private set; get; }
+        public View MainView { private set; get; }
 
         public WindowManager() : this(Settings.GetDefaultSettings())
         {
         }
 
-        public WindowManager(ISettings settings)
+        public WindowManager(Settings settings)
         {
             var videoMode = new VideoMode(settings.WindowWidth, settings.WindowHeight);
-            Window = new RenderWindow(videoMode, settings.WindowTitle, settings.WindowStyle);
+            var contextSettings = new ContextSettings(16, 0, settings.AntialiasingLevel);
+            MainWindow = new RenderWindow(videoMode, settings.WindowTitle, settings.WindowStyle, contextSettings);
 
-            Window.SetVerticalSyncEnabled(settings.VerticalSync);
-            Window.SetKeyRepeatEnabled(settings.KeyRepeat);
+            MainWindow.SetVerticalSyncEnabled(settings.VerticalSync);
+            MainWindow.SetKeyRepeatEnabled(settings.KeyRepeat);
 
-            Window.Closed += Window_Closed;
-            Window.Resized += Window_Resized;
-        }
-
-        public RenderWindow GetWindow()
-        {
-            return Window;
+            MainWindow.Closed += Window_Closed;
+            MainWindow.Resized += Window_Resized;
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Window.Close();
+            MainWindow.Close();
         }
 
         private void Window_Resized(object sender, SizeEventArgs e)
         {
-            Window.SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
+            MainWindow.SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
         }
     }
 }

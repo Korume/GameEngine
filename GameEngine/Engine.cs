@@ -1,4 +1,5 @@
-﻿using GameEngine.Modules.SettingsModule;
+﻿using GameEngine.Modules.SceneModule;
+using GameEngine.Modules.SettingsModule;
 using GameEngine.Modules.WindowModule;
 using SFML.Graphics;
 using SFML.System;
@@ -13,21 +14,22 @@ namespace GameEngine
 {
     public class Engine
     {
-        private ISettingsManager _settingsManager = null;
-        private WindowManager _windowManager = null;
-        private RenderWindow _window = null;
-        private ISettings _settings = null;
+        private ISettingsManager _settingsManager;
+        private WindowManager _windowManager;
+        private SceneManager _sceneManager;
+        private RenderWindow _window;
+        private Settings _settings;
 
         public Engine(ISettingsManager settingsManager)
         {
-            _settingsManager = settingsManager;
-            LoadSettings();
-
+            LoadSettings(settingsManager);
             LoadWindow();
+            _sceneManager = new SceneManager(new Scene(), _window);
         }
 
-        private void LoadSettings()
+        private void LoadSettings(ISettingsManager settingsManager)
         {
+            _settingsManager = settingsManager;
             _settingsManager.LoadSettings();
             _settings = _settingsManager.GetSettings();
         }
@@ -35,7 +37,7 @@ namespace GameEngine
         private void LoadWindow()
         {
             _windowManager = new WindowManager(_settings);
-            _window = _windowManager.Window;
+            _window = _windowManager.MainWindow;
         }
 
         public void StartMainCycle()
@@ -44,7 +46,9 @@ namespace GameEngine
             {
                 _window.DispatchEvents();
 
+                _sceneManager.Update();
                 _window.Clear(Color.Black);
+                _sceneManager.Draw();
                 _window.Display();
             }
         }
