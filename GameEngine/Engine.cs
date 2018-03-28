@@ -1,6 +1,6 @@
-﻿using GameEngine.Modules.SceneModule;
-using GameEngine.Modules.SettingsModule;
-using GameEngine.Modules.WindowModule;
+﻿using GameEngine.Business.Managers;
+using GameEngine.DependencyInjection;
+using GameEngine.Modules.SceneModule;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -9,47 +9,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity;
 
 namespace GameEngine
 {
     public class Engine
     {
-        private ISettingsManager _settingsManager;
         private WindowManager _windowManager;
         private SceneManager _sceneManager;
-        private RenderWindow _window;
-        private Settings _settings;
 
-        public Engine(ISettingsManager settingsManager)
+        public Engine(WindowManager windowManager, SceneManager sceneManager)
         {
-            LoadSettings(settingsManager);
-            LoadWindow();
-            _sceneManager = new SceneManager(new Scene(), _window);
-        }
-
-        private void LoadSettings(ISettingsManager settingsManager)
-        {
-            _settingsManager = settingsManager;
-            _settingsManager.LoadSettings();
-            _settings = _settingsManager.GetSettings();
-        }
-
-        private void LoadWindow()
-        {
-            _windowManager = new WindowManager(_settings);
-            _window = _windowManager.MainWindow;
+            _windowManager = windowManager;
+            _sceneManager = sceneManager;
         }
 
         public void StartMainCycle()
         {
-            while (_window.IsOpen)
+            var window = _windowManager.GetGameWindow().MainWindow;
+            _sceneManager.AddScene(new Scene());
+
+            while (window.IsOpen)
             {
-                _window.DispatchEvents();
+                window.DispatchEvents();
 
                 _sceneManager.Update();
-                _window.Clear(Color.Black);
+                window.Clear(Color.Black);
                 _sceneManager.Draw();
-                _window.Display();
+                window.Display();
             }
         }
     }

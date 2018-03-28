@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using GameEngine.Business.Managers;
+using SFML.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,50 @@ namespace GameEngine.Modules.SceneModule
 {
     public class SceneManager
     {
-        private RenderWindow _renderTarget;
-        private IScene _currentScene;
+        private RenderWindow _mainWindow;
+        private List<IScene> _scenes;
 
-        public SceneManager(IScene scene, RenderWindow renderTarget)
+        public SceneManager(WindowManager windowManager)
         {
-            _currentScene = scene;
-            _renderTarget = renderTarget;
+            _mainWindow = windowManager.GetGameWindow().MainWindow;
+            _scenes = new List<IScene>();
         }
 
-        public void Update() => _currentScene.Update();
+        public void AddScene(IScene scene)
+        { 
+            _scenes.Add(scene);
+        }
 
-        public void Draw() => _renderTarget.Draw(_currentScene);
+        public void AddScene(string sceneName)
+        {
+
+        }
+
+        public void RemoveScene(string sceneName)
+        {
+            foreach (var scene in _scenes)
+            {
+                if((scene as Scene).Name == sceneName)
+                {
+                    _scenes.Remove(scene);
+                }
+            }
+        }
+
+        public void Update()
+        {
+            foreach (var scene in _scenes)
+            {
+                scene.Update();
+            }
+        }
+
+        public void Draw()
+        {
+            foreach (var scene in _scenes)
+            {
+                _mainWindow.Draw(scene);
+            }
+        }
     }
 }

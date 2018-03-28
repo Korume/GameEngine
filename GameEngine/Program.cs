@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Window;
 using SFML.Graphics;
-using GameEngine.Modules.SettingsModule;
-using GameEngine.Modules.WindowModule;
+using GameEngine.DependencyInjection;
+using Unity;
 
 namespace GameEngine
 {
@@ -14,7 +14,7 @@ namespace GameEngine
     {
         static void Main(string[] args)
         {
-            var engine = new Engine(new JsonSettingsManager());
+            var engine = UnityConfig.Container.Resolve<Engine>();
 
             engine.StartMainCycle();
         }

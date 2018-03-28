@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using GameEngine.Business.Entities;
+using SFML.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace GameEngine.Modules.SceneModule
 {
     public abstract class BaseEntity : Transformable, Drawable
     {
-        private Drawable _figure;
+        protected Drawable _figure;
 
         public BaseEntity(Drawable figure)
         {

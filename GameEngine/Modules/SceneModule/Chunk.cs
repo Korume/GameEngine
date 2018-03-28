@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using GameEngine.Business.Entities;
+using SFML.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace GameEngine.Modules.SceneModule
         public Chunk()
         {
             _entities = new List<BaseEntity>(50);
-            _entities.Add(new DynamicEntity(new CircleShape(100)));
+            _entities.Add(new DynamicEntity(new CircleShape(20)));
         }
 
         public void Draw(RenderTarget target, RenderStates states)
