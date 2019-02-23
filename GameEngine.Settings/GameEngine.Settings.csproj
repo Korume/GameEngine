@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D74193F7-799D-44EA-A85E-A11C71F4E4AC}</ProjectGuid>
+    <ProjectGuid>{9E9A38D7-9DF4-4F97-A711-FFFF3B61ED90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameEngine.GameProvider</RootNamespace>
-    <AssemblyName>GameEngine.GameProvider</AssemblyName>
+    <RootNamespace>GameEngine.Settings</RootNamespace>
+    <AssemblyName>GameEngine.Settings</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,22 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="sfmlnet-audio-2">
-      <HintPath>..\GameEngine\bin\Debug\sfmlnet-audio-2.dll</HintPath>
-    </Reference>
-    <Reference Include="sfmlnet-graphics-2">
-      <HintPath>..\GameEngine\bin\Debug\sfmlnet-graphics-2.dll</HintPath>
-    </Reference>
-    <Reference Include="sfmlnet-system-2">
-      <HintPath>..\GameEngine\bin\Debug\sfmlnet-system-2.dll</HintPath>
-    </Reference>
-    <Reference Include="sfmlnet-window-2">
-      <HintPath>..\GameEngine\bin\Debug\sfmlnet-window-2.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,12 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProvider.cs" />
+    <Compile Include="ISettingsProvider.cs" />
+    <Compile Include="JsonSettingsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\BinarySceneProvider.cs" />
+    <Compile Include="SettingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine.Business\GameEngine.Business.csproj">
-      <Project>{5A54F664-45C1-438E-A89B-476B4CE32685}</Project>
+      <Project>{5a54f664-45c1-438e-a89b-476b4ce32685}</Project>
       <Name>GameEngine.Business</Name>
     </ProjectReference>
   </ItemGroup>

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5A54F664-45C1-438E-A89B-476B4CE32685}</ProjectGuid>
+    <ProjectGuid>{7681A307-A9FD-4FA0-9719-768D39622BF0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameEngine.Business</RootNamespace>
-    <AssemblyName>GameEngine.Business</AssemblyName>
+    <RootNamespace>GameEngine.SceneManagement</RootNamespace>
+    <AssemblyName>GameEngine.SceneManagement</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +19,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>0</WarningLevel>
+    <WarningLevel>4</WarningLevel>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -35,7 +34,6 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <WarningLevel>0</WarningLevel>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -54,7 +52,6 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <WarningLevel>0</WarningLevel>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -83,8 +80,6 @@
       <HintPath>..\GameEngine\bin\Debug\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -94,11 +89,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Settings.cs" />
-    <Compile Include="IDataStorage.cs" />
-    <Compile Include="Managers\SettingsManager.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Chunk.cs" />
+    <Compile Include="Entities\DynamicEntity.cs" />
+    <Compile Include="Entities\Scene.cs" />
+    <Compile Include="Entities\StaticEntity.cs" />
+    <Compile Include="Entities\TextBox.cs" />
+    <Compile Include="Interfaces\ISceneProvider.cs" />
+    <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\IProvider.cs" />
+    <Compile Include="Serialization\Surrogates\CircleShapeSurrogate.cs" />
+    <Compile Include="Serialization\Surrogates\ColorSurrogate.cs" />
+    <Compile Include="Serialization\Surrogates\IntRectSurrogate.cs" />
+    <Compile Include="Serialization\Surrogates\RectangleShapeSurrogate.cs" />
+    <Compile Include="Serialization\Surrogates\TransformableSurrogate.cs" />
+    <Compile Include="Serialization\Surrogates\Vector2fSurrogate.cs" />
+    <Compile Include="Services\GameWindow.cs" />
+    <Compile Include="Services\SceneDrawer.cs" />
+    <Compile Include="Services\SceneManager.cs" />
+    <Compile Include="Services\SceneStorage.cs" />
+    <Compile Include="Services\SceneUpdater.cs" />
+    <Compile Include="Services\WindowManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameEngine.Business\GameEngine.Business.csproj">
+      <Project>{5a54f664-45c1-438e-a89b-476b4ce32685}</Project>
+      <Name>GameEngine.Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

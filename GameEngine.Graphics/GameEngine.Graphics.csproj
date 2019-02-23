@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D74193F7-799D-44EA-A85E-A11C71F4E4AC}</ProjectGuid>
+    <ProjectGuid>{FFC37EAB-88C2-477F-A00F-563CDB791446}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameEngine.GameProvider</RootNamespace>
-    <AssemblyName>GameEngine.GameProvider</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>GameEngine.Graphics</RootNamespace>
+    <AssemblyName>GameEngine.Graphics</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,9 +44,7 @@
       <HintPath>..\GameEngine\bin\Debug\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,13 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\BinarySceneProvider.cs" />
+    <Compile Include="SceneDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameEngine.Business\GameEngine.Business.csproj">
-      <Project>{5A54F664-45C1-438E-A89B-476B4CE32685}</Project>
-      <Name>GameEngine.Business</Name>
-    </ProjectReference>
+    <Folder Include="Drawer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

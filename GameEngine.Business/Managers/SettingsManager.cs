@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using GameEngine.Business.Providers;
 using GameEngine.Business.Entities;
+using GameEngine.Business;
 
 namespace GameEngine.Business.Managers
 {
@@ -16,10 +17,10 @@ namespace GameEngine.Business.Managers
     {
         private const string CurrentSettingsKey = "CurrentSettingsKey";
 
-        private ISettingsProvider _settingsProvider;
+        private IProvider<Settings> _settingsProvider;
         private IDataStorage _storage;
 
-        public SettingsManager(ISettingsProvider settingsProvider, IDataStorage storage)
+        public SettingsManager(IProvider<Settings> settingsProvider, IDataStorage storage)
         {
             _settingsProvider = settingsProvider;
             _storage = storage;

@@ -1,7 +1,10 @@
 using GameEngine.Business;
+using GameEngine.Business.Entities;
 using GameEngine.Business.Providers;
-using GameEngine.GameProvider.Providers;
-using GameEngine.Storages;
+using GameEngine.SceneManagement.Entities;
+using GameEngine.SceneManagement.Interfaces;
+using GameEngine.SceneProvider;
+using GameEngine.SettingsProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +20,9 @@ namespace GameEngine.DependencyInjection
         {
             container
 
-            .RegisterType<ISettingsProvider, JsonSettingsProvider>()
-            .RegisterType<IDataStorage, DataStorage>();
+            .RegisterType<IProvider<Settings>, JsonSettingsProvider>()
+            .RegisterType<ISceneProvider, BinarySceneProvider>()
+            .RegisterType<IDataStorage, MemoryStorage>();
         }
     }
 }

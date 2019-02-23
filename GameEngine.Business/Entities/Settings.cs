@@ -10,32 +10,18 @@ namespace GameEngine.Business.Entities
 {
     public class Settings
     {
-        public uint? WindowWidth { get; set; }
-        public uint? WindowHeight { get; set; }
-        public Styles? WindowStyle { get; set; }
-        public string WindowTitle { get; set; }
-        public bool? VerticalSync { get; set; }
-        public bool? KeyRepeat { get; set; }
-        public uint? DepthBits { get; set; }
-        public uint? StencilBits { get; set; }
-        public uint? AntialiasingLevel { get; set; }
+        public uint WindowWidth { get; set; } = 640;
+        public uint WindowHeight { get; set; } = 480;
+        public Styles WindowStyle { get; set; } = Styles.Default;
+        public string WindowTitle { get; set; } = "GameEngine";
+        public bool VerticalSync { get; set; } = true;
+        public bool KeyRepeat { get; set; } = false;
+        public uint DepthBits { get; set; } = 2;
+        public uint StencilBits { get; set; } = 2;
+        public uint AntialiasingLevel { get; set; } = 2;
 
         public Settings Clone() => (Settings)MemberwiseClone();
 
-        public static Settings CreateDefault()
-        {
-            return new Settings()
-            {
-                WindowWidth = 640,
-                WindowHeight = 480,
-                WindowStyle = Styles.Default,
-                WindowTitle = "GameEngine",
-                VerticalSync = true,
-                KeyRepeat = false,
-                AntialiasingLevel = 2,
-                DepthBits = 2,
-                StencilBits = 2
-            };
-        }
+        public static Settings CreateDefault() => new Settings();
     }
 }

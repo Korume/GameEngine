@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GameEngine</RootNamespace>
     <AssemblyName>GameEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
@@ -47,6 +47,48 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>0</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>0</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
@@ -102,20 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyInjection\UnityConfig.cs" />
-    <Compile Include="DependencyInjection\UnityRegisterExtentions.cs" />
     <Compile Include="DependencyInjection\UnityRegistrations.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="Modules\SceneModule\BaseEntity.cs" />
-    <Compile Include="Modules\SceneModule\Chunk.cs" />
-    <Compile Include="Modules\SceneModule\DynamicEntity.cs" />
-    <Compile Include="Modules\SceneModule\IScene.cs" />
-    <Compile Include="Modules\SceneModule\Scene.cs" />
-    <Compile Include="Modules\SceneModule\SceneManager.cs" />
-    <Compile Include="Modules\SceneModule\StaticEntity.cs" />
-    <Compile Include="Storages\DataStorage.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="MemoryStorage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storages\SceneStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -139,9 +172,17 @@
       <Project>{5a54f664-45c1-438e-a89b-476b4ce32685}</Project>
       <Name>GameEngine.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GameEngine.GameProvider\GameEngine.GameProvider.csproj">
-      <Project>{d74193f7-799d-44ea-a85e-a11c71f4e4ac}</Project>
-      <Name>GameEngine.GameProvider</Name>
+    <ProjectReference Include="..\GameEngine.SceneManagement\GameEngine.SceneManagement.csproj">
+      <Project>{7681a307-a9fd-4fa0-9719-768d39622bf0}</Project>
+      <Name>GameEngine.SceneManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEngine.SceneProvider\GameEngine.SceneProvider.csproj">
+      <Project>{5e6bdb56-51dc-4a64-be26-4724ab1dc2e8}</Project>
+      <Name>GameEngine.SceneProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEngine.SettingsProvider\GameEngine.SettingsProvider.csproj">
+      <Project>{8cc7833b-d067-4575-8cf2-1f6966ff7717}</Project>
+      <Name>GameEngine.SettingsProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
