@@ -1,5 +1,4 @@
-﻿using GameEngine.Business.Entities;
-using GameEngine.Business.Providers;
+﻿using GameEngine.GameObjects.ServiceObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.SettingsProvider
 {
-    public class JsonSettingsProvider : IProvider<Settings>
+    public class JsonSettingsProvider : ISettingsProvider
     {
         private readonly string SettingsPath = ConfigurationManager.AppSettings["SettingsPath"];
 

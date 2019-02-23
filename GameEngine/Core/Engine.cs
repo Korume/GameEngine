@@ -1,6 +1,5 @@
 ﻿using GameEngine.DependencyInjection;
-using GameEngine.SceneManagement.Entities;
-using GameEngine.SceneManagement.Services;
+using GameEngine.GameObjects.Entities;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;

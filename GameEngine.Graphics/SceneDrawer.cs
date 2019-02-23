@@ -1,4 +1,5 @@
-﻿using SFML.Graphics;
+﻿using GameEngine.GameObjects.Entities;
+using SFML.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +12,28 @@ namespace GameEngine.Graphics
     {
         private RenderWindow _mainWindow;
 
-        //public SceneDrawer(WindowManager windowManager)
-        //{
-        //    _mainWindow = windowManager.GetGameWindow().MainWindow;
-        //}
+        public SceneDrawer(RenderWindow mainWindow)
+        {
+            _mainWindow = mainWindow;
+        }
 
-        //public void Draw(Scene scene)
-        //{
-        //    foreach (var chunk in scene.Chunks)
-        //    {
-        //        foreach (var entity in chunk.Entities)
-        //        {
-        //            _mainWindow.Draw(entity);
-        //        }
-        //    }
-        //}
+        public void Draw(Scene scene)
+        {
+            foreach (var chunk in scene.Chunks)
+            {
+                foreach (var entity in chunk.Entities)
+                {
+                    _mainWindow.Draw(entity);
+                }
+            }
+        }
 
-        //public void Draw(IList<Scene> scenes)
-        //{
-        //    foreach (var scene in scenes)
-        //    {
-        //        Draw(scene);
-        //    }
-        //}
+        public void Draw(IList<Scene> scenes)
+        {
+            foreach (var scene in scenes)
+            {
+                Draw(scene);
+            }
+        }
     }
 }

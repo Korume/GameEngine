@@ -7,15 +7,15 @@ using Unity;
 
 namespace GameEngine.DependencyInjection
 {
-    public static class UnityConfig
+    public class UnityConfig
     {
-        private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(() =>
-        {
-            var container = new UnityContainer();
-            UnityRegistrations.RegisterTypes(container);
-            return container;
-        });
+        private static readonly IUnityContainer _container = new UnityContainer();
 
-        public static IUnityContainer Container => container.Value;
+        static UnityConfig()
+        {
+            UnityRegistrations.RegisterTypes(_container);
+        }
+
+        public static IUnityContainer Container { get { return _container; } }
     }
 }

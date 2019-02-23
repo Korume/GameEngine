@@ -1,6 +1,5 @@
-﻿using GameEngine.SceneManagement.Serialization.Surrogates;
-using GameEngine.SceneManagement.Entities;
-using GameEngine.SceneManagement.Interfaces;
+﻿using GameEngine.GameObjects.Entities;
+using GameEngine.SceneProvider.Serialization.Surrogates;
 using SFML.Graphics;
 using SFML.System;
 using System;
@@ -20,9 +19,10 @@ namespace GameEngine.SceneProvider
         {
             using (var fileInfo = new FileStream($"{sceneName}.sc", FileMode.Open))
             {
-                var formatter = new BinaryFormatter();
-
-                formatter.SurrogateSelector = GetSurrogateSelector();
+                var formatter = new BinaryFormatter
+                {
+                    SurrogateSelector = GetSurrogateSelector()
+                };
 
                 return (Scene)formatter.Deserialize(fileInfo);
             }
@@ -34,9 +34,10 @@ namespace GameEngine.SceneProvider
             {
                 // ToDo сделать проверку возможности перезаписи
 
-                var formatter = new BinaryFormatter();
-
-                formatter.SurrogateSelector = GetSurrogateSelector();
+                var formatter = new BinaryFormatter
+                {
+                    SurrogateSelector = GetSurrogateSelector()
+                };
 
                 formatter.Serialize(fileInfo, entity);
             }
