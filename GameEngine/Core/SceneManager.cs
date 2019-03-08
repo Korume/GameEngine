@@ -1,9 +1,11 @@
 ﻿using GameEngine.GameObjects.Entities;
+using GameEngine.GameObjects.Events;
 using GameEngine.Graphics;
 using GameEngine.Physics;
 using GameEngine.SceneProvider;
 using GameEngine.Storages;
 using SFML.Graphics;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,10 +89,27 @@ namespace GameEngine.Core
                 {
                     foreach (var entity in chunk.Entities)
                     {
-                        mainWindow.MouseButtonPressed += entity.OnMouseKeyPressed;
+                        if(entity.GetEventState(EventType.MouseButtonPressed))
+                            mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
+
+                        if (entity.GetEventState(EventType.KeyPressed))
+                            mainWindow.KeyPressed += entity.OnKeyPressed;
+
+                        if (entity.GetEventState(EventType.TextEntered))
+                            mainWindow.TextEntered += entity.OnTextEntered;
+
+                        entity.EventStateSwitched += OnEventStateSwitched;
                     }
                 }
             }
+        }
+
+        public void OnEventStateSwitched(object sender, EventStateSwitchedEventArgs e)
+        {
+            if (e.EventType == EventType.TextEntered))
+                mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
+
+            Console.WriteLine(sender.GetType());
         }
     }
 }

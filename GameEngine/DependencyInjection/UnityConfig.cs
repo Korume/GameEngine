@@ -7,7 +7,7 @@ using Unity;
 
 namespace GameEngine.DependencyInjection
 {
-    public class UnityConfig
+    public static class UnityConfig
     {
         private static readonly IUnityContainer _container = new UnityContainer();
 
@@ -16,6 +16,6 @@ namespace GameEngine.DependencyInjection
             UnityRegistrations.RegisterTypes(_container);
         }
 
-        public static IUnityContainer Container { get { return _container; } }
+        public static IUnityContainer Container { get => _container; }
     }
 }
