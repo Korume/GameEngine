@@ -17,9 +17,9 @@ namespace GameEngine.DependencyInjection
         {
             container
 
-            .RegisterType<ISettingsProvider, JsonSettingsProvider>()
-            .RegisterType<ISceneProvider, BinarySceneProvider>()
-            .RegisterType<IDataStorage, MemoryStorage>();
+            .RegisterSingleton<ISettingsProvider, JsonSettingsProvider>()
+            .RegisterSingleton<ISceneProvider, BinarySceneProvider>()
+            .RegisterSingleton<IDataStorage, MemoryStorage>();
         }
     }
 }
