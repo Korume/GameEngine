@@ -9,11 +9,10 @@ namespace GameEngine.Storages
 {
     public class MemoryStorage : IDataStorage
     {
-        private static Hashtable _hashtable;
+        private Hashtable _hashtable;
 
         public MemoryStorage()
         {
-            if (_hashtable == null)
                 _hashtable = new Hashtable();
         }
 

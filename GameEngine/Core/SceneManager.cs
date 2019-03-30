@@ -89,16 +89,16 @@ namespace GameEngine.Core
                 {
                     foreach (var entity in chunk.Entities)
                     {
-                        if(entity.GetEventState(EventType.MouseButtonPressed))
-                            mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
+                        //if(entity.GetEventState(EventType.MouseButtonPressed))
+                        //    mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
 
-                        if (entity.GetEventState(EventType.KeyPressed))
-                            mainWindow.KeyPressed += entity.OnKeyPressed;
+                        //if (entity.GetEventState(EventType.KeyPressed))
+                        //    mainWindow.KeyPressed += entity.OnKeyPressed;
 
-                        if (entity.GetEventState(EventType.TextEntered))
-                            mainWindow.TextEntered += entity.OnTextEntered;
+                        //if (entity.GetEventState(EventType.TextEntered))
+                        //    mainWindow.TextEntered += entity.OnTextEntered;
 
-                        entity.EventStateSwitched += OnEventStateSwitched;
+                        //entity.EventStateSwitched += OnEventStateSwitched;
                     }
                 }
             }
@@ -106,8 +106,8 @@ namespace GameEngine.Core
 
         public void OnEventStateSwitched(object sender, EventStateSwitchedEventArgs e)
         {
-            if (e.EventType == EventType.TextEntered))
-                mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
+            if (e.EventType == EventType.TextEntered)
+                //mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
 
             Console.WriteLine(sender.GetType());
         }
