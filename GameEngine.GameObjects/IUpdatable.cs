@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.GameObjects
 {
-    public interface IUpdateable
+    public interface IUpdatable
     {
         void Update();
     }

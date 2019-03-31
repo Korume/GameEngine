@@ -1,4 +1,6 @@
-﻿using GameEngine.GameObjects.Entities;
+﻿using GameEngine.GameObjects;
+using GameEngine.GameObjects.Entities;
+using GameEngine.Interfaces.Phisics;
 using SFML.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,16 +10,18 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Physics
 {
-    public class SceneUpdater
+    public class SceneUpdater : IUpdater
     {
-        public void Update(Scene scene)
+        public void Update(IUpdatable updatableObject)
         {
-            foreach (var chunk in scene.Chunks)
+            updatableObject.Update();
+        }
+
+        public void Update(IList<IUpdatable> updatableObjectList)
+        {
+            foreach (var updatableObject in updatableObjectList)
             {
-                foreach (var entity in chunk.Entities)
-                {
-                    entity.Update();
-                }
+                updatableObject.Update();
             }
         }
     }

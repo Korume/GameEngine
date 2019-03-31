@@ -21,11 +21,13 @@ namespace GameEngine.SceneProvider.Serialization.Surrogates
 
         public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
         {
-            var intRect = new IntRect();
-            intRect.Height = info.GetInt32("Height");
-            intRect.Left = info.GetInt32("Left");
-            intRect.Top = info.GetInt32("Top");
-            intRect.Width = info.GetInt32("Width");
+            var intRect = new IntRect
+            {
+                Height = info.GetInt32("Height"),
+                Left = info.GetInt32("Left"),
+                Top = info.GetInt32("Top"),
+                Width = info.GetInt32("Width")
+            };
             return intRect;
         }
     }

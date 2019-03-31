@@ -14,7 +14,7 @@ namespace GameEngine.GameObjects.Entities
 
 {
     [Serializable]
-    public abstract class BaseEntity : Drawable, IUpdateable
+    public abstract class BaseEntity : Drawable, IUpdatable
     {
         public IList<Drawable> Figures { private set; get; }
         protected Transformable _transformable;

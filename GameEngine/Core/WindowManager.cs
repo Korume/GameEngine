@@ -1,4 +1,6 @@
 ﻿using GameEngine.GameObjects.ServiceObjects;
+using GameEngine.Interfaces.Core;
+using GameEngine.Interfaces.Storages;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -10,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Core
 {
-    public class WindowManager
+    public class WindowManager : IWindowManager
     {
         private const string CurrentWindowKey = "CurrentWindowKey";
 
-        private SettingsManager _settingsManager;
+        private ISettingsManager _settingsManager;
         private IDataStorage _storage;
 
-        public WindowManager(SettingsManager settingsManager, IDataStorage storage)
+        public WindowManager(ISettingsManager settingsManager, IDataStorage storage)
         {
             _settingsManager = settingsManager;
             _storage = storage;

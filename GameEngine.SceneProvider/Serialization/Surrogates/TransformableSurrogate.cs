@@ -22,11 +22,13 @@ namespace GameEngine.SceneProvider.Serialization.Surrogates
 
         public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
         {
-            var transformable = new Transformable();
-            transformable.Origin = (Vector2f)info.GetValue("Origin", typeof(Vector2f));
-            transformable.Position = (Vector2f)info.GetValue("Position", typeof(Vector2f));
-            transformable.Rotation = (float)info.GetValue("Rotation", typeof(float));
-            transformable.Scale = (Vector2f)info.GetValue("Scale", typeof(Vector2f));
+            var transformable = new Transformable
+            {
+                Origin = (Vector2f)info.GetValue("Origin", typeof(Vector2f)),
+                Position = (Vector2f)info.GetValue("Position", typeof(Vector2f)),
+                Rotation = info.GetSingle("Rotation"),
+                Scale = (Vector2f)info.GetValue("Scale", typeof(Vector2f))
+            };
             return transformable;
         }
     }

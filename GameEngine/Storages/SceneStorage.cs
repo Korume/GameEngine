@@ -1,4 +1,5 @@
 ﻿using GameEngine.GameObjects.Entities;
+using GameEngine.Interfaces.Storages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Storages
 {
-    public class SceneStorage
+    public class SceneStorage : ISceneStorage
     {
-        private static HashSet<Scene> _hashSet;
+        private HashSet<Scene> _hashSet;
 
         public SceneStorage()
         {
-            if (_hashSet == null)
-                _hashSet = new HashSet<Scene>();
+            _hashSet = new HashSet<Scene>();
         }
 
         public Scene GetScene(string sceneName)

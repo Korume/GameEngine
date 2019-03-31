@@ -8,6 +8,7 @@ using SFML.Graphics;
 using GameEngine.DependencyInjection;
 using Unity;
 using GameEngine.Core;
+using GameEngine.Interfaces.Core;
 
 namespace GameEngine
 {
@@ -15,7 +16,7 @@ namespace GameEngine
     {
         static void Main(string[] args)
         {
-            var engine = UnityConfig.Container.Resolve<Engine>();
+            var engine = UnityConfig.Container.Resolve<IEngine>();
 
             engine.StartMainCycle();
         }

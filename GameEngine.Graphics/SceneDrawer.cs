@@ -1,4 +1,6 @@
 ﻿using GameEngine.GameObjects.Entities;
+using GameEngine.Interfaces.Core;
+using GameEngine.Interfaces.Graphics;
 using SFML.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,31 +10,27 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Graphics
 {
-    public class SceneDrawer
+    public class SceneDrawer : IDrawer
     {
-        private RenderWindow _mainWindow;
+        private IWindowManager _windowManager;
 
-        public SceneDrawer(RenderWindow mainWindow)
+        private RenderWindow _mainWindow { get => _windowManager.GetGameWindow().MainWindow; }
+
+        public SceneDrawer(IWindowManager windowManager)
         {
-            _mainWindow = mainWindow;
+            _windowManager = windowManager;
         }
 
-        public void Draw(Scene scene)
+        public void Draw(Drawable drawableObject)
         {
-            foreach (var chunk in scene.Chunks)
-            {
-                foreach (var entity in chunk.Entities)
-                {
-                    _mainWindow.Draw(entity);
-                }
-            }
+            _mainWindow.Draw(drawableObject);
         }
 
-        public void Draw(IList<Scene> scenes)
+        public void Draw(IList<Drawable> drawableObjectList)
         {
-            foreach (var scene in scenes)
+            foreach (var drawableObject in drawableObjectList)
             {
-                Draw(scene);
+                _mainWindow.Draw(drawableObject);
             }
         }
     }

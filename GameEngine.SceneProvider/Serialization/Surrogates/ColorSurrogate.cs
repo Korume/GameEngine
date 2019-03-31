@@ -21,11 +21,13 @@ namespace GameEngine.SceneProvider.Serialization.Surrogates
 
         public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
         {
-            var color = new Color();
-            color.A = info.GetByte("A");
-            color.B = info.GetByte("B");
-            color.G = info.GetByte("G");
-            color.R = info.GetByte("R");
+            var color = new Color
+            {
+                A = info.GetByte("A"),
+                B = info.GetByte("B"),
+                G = info.GetByte("G"),
+                R = info.GetByte("R")
+            };
             return color;
         }
     }

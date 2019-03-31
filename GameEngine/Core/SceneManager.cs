@@ -1,6 +1,10 @@
 ﻿using GameEngine.GameObjects.Entities;
 using GameEngine.GameObjects.Events;
 using GameEngine.Graphics;
+using GameEngine.Interfaces.Core;
+using GameEngine.Interfaces.Graphics;
+using GameEngine.Interfaces.Phisics;
+using GameEngine.Interfaces.Storages;
 using GameEngine.Physics;
 using GameEngine.SceneProvider;
 using GameEngine.Storages;
@@ -14,22 +18,22 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Core
 {
-    public class SceneManager
+    public class SceneManager : ISceneManager
     {
         private ISceneProvider _sceneProvider;
-        private SceneStorage _sceneStorage;
-        private SceneDrawer _sceneDrawer;
-        private SceneUpdater _sceneUpdater;
+        private ISceneStorage _sceneStorage;
+        private IDrawer _drawer;
+        private IUpdater _updater;
 
         private IList<Scene> Scenes { get => _sceneStorage.GetScenes(); }
 
-        public SceneManager(ISceneProvider sceneProvider, SceneStorage sceneStorage,
-            SceneUpdater sceneUpdater, WindowManager windowManager)
+        public SceneManager(ISceneProvider sceneProvider, ISceneStorage sceneStorage,
+            IUpdater updater, IDrawer drawer)
         {
             _sceneProvider = sceneProvider;
             _sceneStorage = sceneStorage;
-            _sceneUpdater = sceneUpdater;
-            _sceneDrawer = new SceneDrawer(windowManager.GetGameWindow().MainWindow);
+            _updater = updater;
+            _drawer = drawer;
         }
 
         public Scene GetSceneFromStorage(string sceneName)
@@ -69,7 +73,13 @@ namespace GameEngine.Core
         {
             foreach (var scene in Scenes)
             {
-                _sceneUpdater.Update(scene);
+                foreach (var chunk in scene.Chunks)
+                {
+                    foreach (var entity in chunk.Entities)
+                    {
+                        _updater.Update(entity);
+                    }
+                }
             }
         }
 
@@ -77,7 +87,13 @@ namespace GameEngine.Core
         {
             foreach (var scene in Scenes)
             {
-                _sceneDrawer.Draw(scene);
+                foreach (var chunk in scene.Chunks)
+                {
+                    foreach (var entity in chunk.Entities)
+                    {
+                        _drawer.Draw(entity);
+                    }
+                }
             }
         }
 

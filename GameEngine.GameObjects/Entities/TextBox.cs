@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.GameObjects.Entities
 {
+    [Serializable]
     public class TextBox : DynamicEntity
     {
         public TextBox() : base()

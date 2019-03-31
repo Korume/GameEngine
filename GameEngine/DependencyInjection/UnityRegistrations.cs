@@ -1,4 +1,11 @@
+using GameEngine.Core;
 using GameEngine.GameObjects.ServiceObjects;
+using GameEngine.Graphics;
+using GameEngine.Interfaces.Core;
+using GameEngine.Interfaces.Graphics;
+using GameEngine.Interfaces.Phisics;
+using GameEngine.Interfaces.Storages;
+using GameEngine.Physics;
 using GameEngine.SceneProvider;
 using GameEngine.SettingsProvider;
 using GameEngine.Storages;
@@ -17,9 +24,16 @@ namespace GameEngine.DependencyInjection
         {
             container
 
+            .RegisterSingleton<IEngine, Engine>()
+            .RegisterSingleton<ISettingsManager, SettingsManager>()
+            .RegisterSingleton<IWindowManager, WindowManager>()
+            .RegisterSingleton<ISceneManager, SceneManager>()
             .RegisterSingleton<ISettingsProvider, JsonSettingsProvider>()
             .RegisterSingleton<ISceneProvider, BinarySceneProvider>()
-            .RegisterSingleton<IDataStorage, MemoryStorage>();
+            .RegisterSingleton<IDataStorage, MemoryStorage>()
+            .RegisterSingleton<ISceneStorage, SceneStorage>()
+            .RegisterSingleton<IDrawer, SceneDrawer>()
+            .RegisterSingleton<IUpdater, SceneUpdater>();
         }
     }
 }

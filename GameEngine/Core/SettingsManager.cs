@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using GameEngine.SettingsProvider;
 using GameEngine.GameObjects.ServiceObjects;
+using GameEngine.Interfaces.Core;
+using GameEngine.Interfaces.Storages;
 
 namespace GameEngine.Core
 {
-    public class SettingsManager
+    public class SettingsManager : ISettingsManager
     {
         private const string CurrentSettingsKey = "CurrentSettingsKey";
 

@@ -61,6 +61,10 @@
       <Project>{395B543E-3259-4F9F-9559-DD0F68B80F8E}</Project>
       <Name>GameEngine.GameObjects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GameEngine.Interfaces\GameEngine.Interfaces.csproj">
+      <Project>{38F4279D-2758-4C91-816F-B10E3D0F44BC}</Project>
+      <Name>GameEngine.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

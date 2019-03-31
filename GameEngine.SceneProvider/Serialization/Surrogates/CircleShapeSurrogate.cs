@@ -28,17 +28,19 @@ namespace GameEngine.SceneProvider.Serialization.Surrogates
 
         public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
         {
-            var circleShape = new CircleShape();
-            circleShape.FillColor = (Color)info.GetValue("FillColor", typeof(Color));
-            circleShape.Origin = (Vector2f)info.GetValue("Origin", typeof(Vector2f));
-            circleShape.OutlineColor = (Color)info.GetValue("OutlineColor", typeof(Color));
-            circleShape.OutlineThickness = (float)info.GetValue("OutlineThickness", typeof(float));
-            circleShape.Position = (Vector2f)info.GetValue("Position", typeof(Vector2f));
-            circleShape.Radius = (float)info.GetValue("Radius", typeof(float));
-            circleShape.Rotation = (float)info.GetValue("Rotation", typeof(float));
-            circleShape.Scale = (Vector2f)info.GetValue("Scale", typeof(Vector2f));
-            circleShape.Texture = (Texture)info.GetValue("Texture", typeof(Texture));
-            circleShape.TextureRect = (IntRect)info.GetValue("TextureRect", typeof(IntRect));
+            var circleShape = new CircleShape
+            {
+                FillColor = (Color)info.GetValue("FillColor", typeof(Color)),
+                Origin = (Vector2f)info.GetValue("Origin", typeof(Vector2f)),
+                OutlineColor = (Color)info.GetValue("OutlineColor", typeof(Color)),
+                OutlineThickness = info.GetSingle("OutlineThickness"),
+                Position = (Vector2f)info.GetValue("Position", typeof(Vector2f)),
+                Radius = info.GetSingle("Radius"),
+                Rotation = info.GetSingle("Rotation"),
+                Scale = (Vector2f)info.GetValue("Scale", typeof(Vector2f)),
+                Texture = (Texture)info.GetValue("Texture", typeof(Texture)),
+                TextureRect = (IntRect)info.GetValue("TextureRect", typeof(IntRect))
+            };
             return circleShape;
         }
     }

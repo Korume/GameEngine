@@ -60,6 +60,10 @@ namespace GameEngine.SceneProvider
                                            new IntRectSurrogate());
             surrogateSelector.AddSurrogate(typeof(RectangleShape), new StreamingContext(StreamingContextStates.All),
                                            new RectangleShapeSurrogate());
+            surrogateSelector.AddSurrogate(typeof(Text), new StreamingContext(StreamingContextStates.All),
+                                           new TextSurrogate());
+            surrogateSelector.AddSurrogate(typeof(Font), new StreamingContext(StreamingContextStates.All),
+                                           new FontSurrogate());
             return surrogateSelector;
         }
     }

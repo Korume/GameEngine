@@ -133,7 +133,6 @@
     <Compile Include="DependencyInjection\UnityConfig.cs" />
     <Compile Include="DependencyInjection\UnityRegistrations.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="IDataStorage.cs" />
     <Compile Include="Storages\MemoryStorage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +165,10 @@
     <ProjectReference Include="..\GameEngine.Graphics\GameEngine.Graphics.csproj">
       <Project>{ffc37eab-88c2-477f-a00f-563cdb791446}</Project>
       <Name>GameEngine.Graphics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEngine.Interfaces\GameEngine.Interfaces.csproj">
+      <Project>{38F4279D-2758-4C91-816F-B10E3D0F44BC}</Project>
+      <Name>GameEngine.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\GameEngine.Physics\GameEngine.Physics.csproj">
       <Project>{1a86df5a-12eb-45ae-b7b5-a9717b927024}</Project>

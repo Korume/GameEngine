@@ -60,7 +60,7 @@
     <Compile Include="Entities\StaticEntity.cs" />
     <Compile Include="Entities\TextBox.cs" />
     <Compile Include="Events\EventStateSwitchedEventArgs.cs" />
-    <Compile Include="IUpdateable.cs" />
+    <Compile Include="IUpdatable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceObjects\GameWindow.cs" />
     <Compile Include="ServiceObjects\Settings.cs" />

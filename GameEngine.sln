@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine.Physics", "GameE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine.GameObjects", "GameEngine.GameObjects\GameEngine.GameObjects.csproj", "{395B543E-3259-4F9F-9559-DD0F68B80F8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine.Interfaces", "GameEngine.Interfaces\GameEngine.Interfaces.csproj", "{38F4279D-2758-4C91-816F-B10E3D0F44BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,18 @@ Global
 		{395B543E-3259-4F9F-9559-DD0F68B80F8E}.Release|x64.Build.0 = Release|Any CPU
 		{395B543E-3259-4F9F-9559-DD0F68B80F8E}.Release|x86.ActiveCfg = Release|Any CPU
 		{395B543E-3259-4F9F-9559-DD0F68B80F8E}.Release|x86.Build.0 = Release|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Debug|x64.Build.0 = Debug|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Debug|x86.Build.0 = Debug|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Release|x64.ActiveCfg = Release|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Release|x64.Build.0 = Release|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{38F4279D-2758-4C91-816F-B10E3D0F44BC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

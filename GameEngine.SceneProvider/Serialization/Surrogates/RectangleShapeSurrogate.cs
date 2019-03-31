@@ -28,17 +28,19 @@ namespace GameEngine.SceneProvider.Serialization.Surrogates
 
         public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
         {
-            var rectangleShape = new RectangleShape();
-            rectangleShape.FillColor = (Color)info.GetValue("FillColor", typeof(Color));
-            rectangleShape.Origin = (Vector2f)info.GetValue("Origin", typeof(Vector2f));
-            rectangleShape.OutlineColor = (Color)info.GetValue("OutlineColor", typeof(Color));
-            rectangleShape.OutlineThickness = (float)info.GetValue("OutlineThickness", typeof(float));
-            rectangleShape.Position = (Vector2f)info.GetValue("Position", typeof(Vector2f));
-            rectangleShape.Rotation = (float)info.GetValue("Rotation", typeof(float));
-            rectangleShape.Scale = (Vector2f)info.GetValue("Scale", typeof(Vector2f));
-            rectangleShape.Size = (Vector2f)info.GetValue("Size", typeof(Vector2f));
-            rectangleShape.Texture = (Texture)info.GetValue("Texture", typeof(Texture));
-            rectangleShape.TextureRect = (IntRect)info.GetValue("TextureRect", typeof(IntRect));
+            var rectangleShape = new RectangleShape
+            {
+                FillColor = (Color)info.GetValue("FillColor", typeof(Color)),
+                Origin = (Vector2f)info.GetValue("Origin", typeof(Vector2f)),
+                OutlineColor = (Color)info.GetValue("OutlineColor", typeof(Color)),
+                OutlineThickness = info.GetSingle("OutlineThickness"),
+                Position = (Vector2f)info.GetValue("Position", typeof(Vector2f)),
+                Rotation = info.GetSingle("Rotation"),
+                Scale = (Vector2f)info.GetValue("Scale", typeof(Vector2f)),
+                Size = (Vector2f)info.GetValue("Size", typeof(Vector2f)),
+                Texture = (Texture)info.GetValue("Texture", typeof(Texture)),
+                TextureRect = (IntRect)info.GetValue("TextureRect", typeof(IntRect))
+            };
             return rectangleShape;
         }
     }

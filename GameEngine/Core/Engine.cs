@@ -1,5 +1,6 @@
 ﻿using GameEngine.DependencyInjection;
 using GameEngine.GameObjects.Entities;
+using GameEngine.Interfaces.Core;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -15,14 +16,14 @@ using Unity;
 
 namespace GameEngine.Core
 {
-    public class Engine
+    public class Engine : IEngine
     {
-        private WindowManager _windowManager;
-        private SceneManager _sceneManager;
+        private IWindowManager _windowManager;
+        private ISceneManager _sceneManager;
 
         private RenderWindow MainWindow { get => _windowManager.GetGameWindow().MainWindow; }
 
-        public Engine(WindowManager windowManager, SceneManager sceneManager)
+        public Engine(IWindowManager windowManager, ISceneManager sceneManager)
         {
             _windowManager = windowManager;
             _sceneManager = sceneManager;
@@ -31,7 +32,7 @@ namespace GameEngine.Core
         public void StartMainCycle()
         {
             _sceneManager.AddSceneToStorage(new Scene());
-            _sceneManager.AddHandlers(MainWindow);
+            (_sceneManager as SceneManager).AddHandlers(MainWindow); // to do переделать этот метод
 
             while (MainWindow.IsOpen)
             {
