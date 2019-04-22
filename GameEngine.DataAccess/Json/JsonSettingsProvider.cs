@@ -1,7 +1,6 @@
 ﻿using GameEngine.GameObjects.ServiceObjects;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -10,8 +9,9 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using GameEngine.Interfaces.DataAccess;
 
-namespace GameEngine.SettingsProvider
+namespace GameEngine.DataAccess.Json
 {
     public class JsonSettingsProvider : ISettingsProvider
     {
@@ -31,7 +31,6 @@ namespace GameEngine.SettingsProvider
             using (var fileInfo = new FileStream(SettingsPath, FileMode.Open))
             {
                 var jsonFormatter = new DataContractJsonSerializer(typeof(Settings));
-                //newtonsoft json -- hz
                 try
                 {
                     return (Settings)jsonFormatter.ReadObject(fileInfo);

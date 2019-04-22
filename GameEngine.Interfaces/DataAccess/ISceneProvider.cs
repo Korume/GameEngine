@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.SceneProvider
+namespace GameEngine.Interfaces.DataAccess
 {
     public interface ISceneProvider
     {

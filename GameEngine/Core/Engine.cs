@@ -31,7 +31,11 @@ namespace GameEngine.Core
 
         public void StartMainCycle()
         {
-            _sceneManager.AddSceneToStorage(new Scene());
+            //_sceneManager.AddSceneToStorage(new Scene());
+
+            _sceneManager.AddSceneToStorage("MainMenu");
+
+            //_sceneManager.SaveSceneToFile("MainMenu");
             (_sceneManager as SceneManager).AddHandlers(MainWindow); // to do переделать этот метод
 
             while (MainWindow.IsOpen)

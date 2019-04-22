@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using GameEngine.SettingsProvider;
 using GameEngine.GameObjects.ServiceObjects;
 using GameEngine.Interfaces.Core;
 using GameEngine.Interfaces.Storages;
+using GameEngine.Interfaces.DataAccess;
 
 namespace GameEngine.Core
 {
