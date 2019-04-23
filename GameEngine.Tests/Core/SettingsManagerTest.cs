@@ -10,20 +10,30 @@ namespace GameEngine.Tests.Core
     [TestClass]
     public class SettingsManagerTest
     {
+        private Mock<ISettingsProvider> _settingProviderMock;
+        private Mock<IDataStorage> _dataStorageMock;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _settingProviderMock = new Mock<ISettingsProvider>();
+            _dataStorageMock = new Mock<IDataStorage>();
+        }
+
         [TestMethod]
-        public void GetSettings_StorageAndProviderReturn_SettingsReturned()
+        public void GetSettings_StorageReturnNull_SettingsReturned()
         {
             var settings = new Settings();
 
-            var settingsProvider = Mock.Of<ISettingsProvider>(s => s.Get() == settings);
-            var storage = Mock.Of<IDataStorage>(d => d.GetValue<Settings>("CurrentSettingsKey") == settings);
+            var currentSettingsKey = "CurrentSettingsKey";
+            _dataStorageMock.Setup(s => s.GetValue<Settings>(currentSettingsKey)).Returns<Settings>(null);
+            _settingProviderMock.Setup(s => s.Get()).Returns(settings);
 
-            var settingsManager = new SettingsManager(settingsProvider, storage);
+            var settingsManager = new SettingsManager(_settingProviderMock.Object, _dataStorageMock.Object);
 
             var result = settingsManager.GetSettings();
 
-            Assert.AreEqual(settings, result);
-            Assert.IsNotNull(result);
+            Assert.AreEqual(settings.AntialiasingLevel, result.AntialiasingLevel);
         }
     }
 }
