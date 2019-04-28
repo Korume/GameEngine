@@ -19,9 +19,5 @@ namespace GameEngine.GameObjects.ServiceObjects
         public uint DepthBits { get; set; } = 2;
         public uint StencilBits { get; set; } = 2;
         public uint AntialiasingLevel { get; set; } = 2;
-
-        public Settings Clone() => (Settings)MemberwiseClone();
-
-        public static Settings CreateDefault() => new Settings();
     }
 }
