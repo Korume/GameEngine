@@ -1,10 +1,12 @@
 using GameEngine.Core;
 using GameEngine.DataAccess.Binary;
 using GameEngine.DataAccess.Json;
+using GameEngine.Factories;
 using GameEngine.GameObjects.ServiceObjects;
 using GameEngine.Graphics;
 using GameEngine.Interfaces.Core;
 using GameEngine.Interfaces.DataAccess;
+using GameEngine.Interfaces.Factories;
 using GameEngine.Interfaces.Graphics;
 using GameEngine.Interfaces.Phisics;
 using GameEngine.Interfaces.Storages;
@@ -35,7 +37,8 @@ namespace GameEngine.DependencyInjection
             .RegisterSingleton<IDataStorage, MemoryStorage>()
             .RegisterSingleton<ISceneStorage, SceneStorage>()
             .RegisterSingleton<IDrawer, SceneDrawer>()
-            .RegisterSingleton<IUpdater, SceneUpdater>();
+            .RegisterSingleton<IUpdater, SceneUpdater>()
+            .RegisterSingleton<ISettingsFactory, SettingsFactory>();
         }
     }
 }

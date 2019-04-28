@@ -59,6 +59,7 @@
     <Compile Include="Core\IWindowManager.cs" />
     <Compile Include="DataAccess\ISceneProvider.cs" />
     <Compile Include="DataAccess\ISettingsProvider.cs" />
+    <Compile Include="Factories\ISettingsFactory.cs" />
     <Compile Include="Graphics\IDrawer.cs" />
     <Compile Include="Phisics\IUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

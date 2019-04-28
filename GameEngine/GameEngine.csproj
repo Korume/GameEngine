@@ -133,6 +133,7 @@
     <Compile Include="DependencyInjection\UnityConfig.cs" />
     <Compile Include="DependencyInjection\UnityRegistrations.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Factories\SettingsFactory.cs" />
     <Compile Include="Storages\MemoryStorage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,6 +11,7 @@ using GameEngine.GameObjects.ServiceObjects;
 using GameEngine.Interfaces.Core;
 using GameEngine.Interfaces.Storages;
 using GameEngine.Interfaces.DataAccess;
+using GameEngine.Interfaces.Factories;
 
 namespace GameEngine.Core
 {
@@ -20,11 +21,13 @@ namespace GameEngine.Core
 
         private ISettingsProvider _settingsProvider;
         private IDataStorage _storage;
+        private ISettingsFactory _settingsFactory;
 
-        public SettingsManager(ISettingsProvider settingsProvider, IDataStorage storage)
+        public SettingsManager(ISettingsProvider settingsProvider, IDataStorage storage, ISettingsFactory settingsFactory)
         {
             _settingsProvider = settingsProvider;
             _storage = storage;
+            _settingsFactory = settingsFactory;
         }
 
         public Settings GetSettings()
@@ -33,6 +36,11 @@ namespace GameEngine.Core
             if(settings == null)
             {
                 settings = _settingsProvider.Get();
+                if(settings == null)
+                {
+                    settings = _settingsFactory.CreateDefault();
+                    _settingsProvider.Save(settings);
+                }
                 _storage.SetValue(CurrentSettingsKey, settings);
             }
             return settings;

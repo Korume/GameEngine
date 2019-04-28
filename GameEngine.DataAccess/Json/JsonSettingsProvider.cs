@@ -20,26 +20,22 @@ namespace GameEngine.DataAccess.Json
         public Settings Get()
         {
             bool isFileExist = File.Exists(SettingsPath);
-            var settings = isFileExist ? LoadFromFile() ?? CreateDefaultSettingsFile() : CreateDefaultSettingsFile();
-            return settings;
-        }
-
-        private Settings CreateDefaultSettingsFile() => Save(Settings.CreateDefault());
-
-        private Settings LoadFromFile()
-        {
-            using (var fileInfo = new FileStream(SettingsPath, FileMode.Open))
+            if(isFileExist)
             {
-                var jsonFormatter = new DataContractJsonSerializer(typeof(Settings));
-                try
+                using (var fileInfo = new FileStream(SettingsPath, FileMode.Open))
                 {
-                    return (Settings)jsonFormatter.ReadObject(fileInfo);
-                }
-                catch (SerializationException)
-                {
-                    return null;
+                    var jsonFormatter = new DataContractJsonSerializer(typeof(Settings));
+                    try
+                    {
+                        return (Settings)jsonFormatter.ReadObject(fileInfo);
+                    }
+                    catch (SerializationException)
+                    {
+                        return null;
+                    }
                 }
             }
+            return null;
         }
 
         public Settings Save(Settings settingsForSave)
