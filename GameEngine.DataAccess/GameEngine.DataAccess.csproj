@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Binary\BinaryBaseEntityProvider.cs" />
     <Compile Include="Binary\BinarySceneProvider.cs" />
     <Compile Include="Binary\Serialization\Surrogates\DefaultSerializationSurrogate.cs" />
     <Compile Include="Binary\Serialization\Surrogates\FontSerializationSurrogate.cs" />

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -12,34 +11,34 @@ using System.Threading.Tasks;
 
 namespace GameEngine.DataAccess.Binary
 {
-    public class BinarySceneProvider : ISceneProvider
+    public class BinaryBaseEntityProvider : IBaseEntityProvider
     {
         private readonly ISurrogateSelector _surrogateSelector;
         private readonly StreamingContext _streamingContext;
 
-        public BinarySceneProvider(ISurrogateSelector surrogateSelector, StreamingContext streamingContext)
+        public BinaryBaseEntityProvider(ISurrogateSelector surrogateSelector, StreamingContext streamingContext)
         {
             _surrogateSelector = surrogateSelector;
             _streamingContext = streamingContext;
         }
 
-        public Scene Get(string sceneName)
+        public BaseEntity Get(string entityName)
         {
-            using (var fileInfo = new FileStream($"{sceneName}.sc", FileMode.Open))
+            using (var fileInfo = new FileStream($"{entityName}.be", FileMode.Open))
             {
-                var formatter = new BinaryFormatter()
+                var formatter = new BinaryFormatter
                 {
                     Context = _streamingContext,
                     SurrogateSelector = _surrogateSelector
                 };
 
-                return (Scene)formatter.Deserialize(fileInfo);
+                return (BaseEntity)formatter.Deserialize(fileInfo);
             }
         }
 
-        public Scene Save(Scene scene)
+        public BaseEntity Save(BaseEntity entity)
         {
-            using (var fileInfo = new FileStream($"{scene.Name}.sc", FileMode.Create))
+            using (var fileInfo = new FileStream($"{entity.Name}.be", FileMode.Create))
             {
                 // ToDo сделать проверку возможности перезаписи
 
@@ -49,10 +48,10 @@ namespace GameEngine.DataAccess.Binary
                     SurrogateSelector = _surrogateSelector
                 };
 
-                formatter.Serialize(fileInfo, scene);
+                formatter.Serialize(fileInfo, entity);
             }
 
-            return scene;
+            return entity;
         }
     }
 }

@@ -7,9 +7,9 @@ using GameEngine.Interfaces.Graphics;
 using GameEngine.Interfaces.Phisics;
 using GameEngine.Interfaces.Storages;
 using GameEngine.Physics;
-using GameEngine.SceneProvider;
 using GameEngine.Storages;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
@@ -17,14 +17,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Unity;
+
 namespace GameEngine.Core
 {
     public class SceneManager : ISceneManager
     {
-        private ISceneProvider _sceneProvider;
-        private ISceneStorage _sceneStorage;
-        private IDrawer _drawer;
-        private IUpdater _updater;
+        private readonly ISceneProvider _sceneProvider;
+        private readonly ISceneStorage _sceneStorage;
+        private readonly IDrawer _drawer;
+        private readonly IUpdater _updater;
 
         private IList<Scene> Scenes { get => _sceneStorage.GetScenes(); }
 
@@ -74,12 +76,9 @@ namespace GameEngine.Core
         {
             foreach (var scene in Scenes)
             {
-                foreach (var chunk in scene.Chunks)
+                foreach (var entity in scene.Entities)
                 {
-                    foreach (var entity in chunk.Entities)
-                    {
-                        _updater.Update(entity);
-                    }
+                    _updater.Update(entity);
                 }
             }
         }
@@ -88,11 +87,11 @@ namespace GameEngine.Core
         {
             foreach (var scene in Scenes)
             {
-                foreach (var chunk in scene.Chunks)
+                foreach (var entity in scene.Entities)
                 {
-                    foreach (var entity in chunk.Entities)
+                    foreach (var figure in entity.Figures)
                     {
-                        _drawer.Draw(entity);
+                        _drawer.Draw(figure);
                     }
                 }
             }
@@ -100,25 +99,23 @@ namespace GameEngine.Core
 
         public void AddHandlers(RenderWindow mainWindow)
         {
-            foreach (var scene in Scenes)
-            {
-                foreach (var chunk in scene.Chunks)
-                {
-                    foreach (var entity in chunk.Entities)
-                    {
-                        //if(entity.GetEventState(EventType.MouseButtonPressed))
-                        //    mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
+            //foreach (var scene in Scenes)
+            //{
+            //    foreach (var entity in scene.Entities)
+            //    {
+            //        if (entity.GetEventState(EventType.MouseButtonPressed))
+            //            mainWindow.MouseButtonPressed += OnMouseButtonPressed;
 
-                        //if (entity.GetEventState(EventType.KeyPressed))
-                        //    mainWindow.KeyPressed += entity.OnKeyPressed;
+            //        if (entity.GetEventState(EventType.KeyPressed))
+            //            mainWindow.KeyPressed += entity.OnKeyPressed;
 
-                        //if (entity.GetEventState(EventType.TextEntered))
-                        //    mainWindow.TextEntered += entity.OnTextEntered;
+            //        if (entity.GetEventState(EventType.TextEntered))
+            //            mainWindow.TextEntered += entity.OnTextEntered;
 
-                        //entity.EventStateSwitched += OnEventStateSwitched;
-                    }
-                }
-            }
+            //        entity.EventStateSwitched += OnEventStateSwitched;
+            //    }
+            //}
+            mainWindow.MouseButtonPressed += OnMouseButtonPressed;
         }
 
         public void OnEventStateSwitched(object sender, EventStateSwitchedEventArgs e)
@@ -126,7 +123,26 @@ namespace GameEngine.Core
             if (e.EventType == EventType.TextEntered)
                 //mainWindow.MouseButtonPressed += entity.OnMouseButtonPressed;
 
-            Console.WriteLine(sender.GetType());
+                Console.WriteLine(sender.GetType());
+        }
+
+        public void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
+        {
+            foreach (var scene in Scenes)
+            {
+                foreach (var entity in scene.Entities)
+                {
+                    foreach (var figure in entity.Figures)
+                    {
+                        if (figure is RectangleShape rectangleShape && rectangleShape.GetLocalBounds().Contains(e.X, e.Y))
+                        {
+                            // Костыль, это не тут должно быть
+                            DependencyInjection.UnityConfig.Container.Resolve<IBaseEntityProvider>().Save(entity);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

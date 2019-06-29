@@ -1,4 +1,5 @@
 ﻿using GameEngine.GameObjects;
+using GameEngine.GameObjects.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace GameEngine.Interfaces.Phisics
 {
     public interface IUpdater
     {
-        void Update(IUpdatable updatableObject);
-        void Update(IList<IUpdatable> updatableObjectList);
+        void Update(BaseEntity updatableObject);
+        void Update(IList<BaseEntity> updatableObjectList);
     }
 }

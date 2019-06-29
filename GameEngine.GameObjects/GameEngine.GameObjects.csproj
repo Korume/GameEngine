@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Chunk.cs" />
     <Compile Include="Entities\DynamicEntity.cs" />
     <Compile Include="Entities\Scene.cs" />
+    <Compile Include="StateSystem\Event.cs" />
+    <Compile Include="StateSystem\Reaction.cs" />
+    <Compile Include="StateSystem\State.cs" />
     <Compile Include="Entities\StaticEntity.cs" />
     <Compile Include="Entities\TextBox.cs" />
     <Compile Include="Events\EventStateSwitchedEventArgs.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceObjects\GameWindow.cs" />
     <Compile Include="ServiceObjects\Settings.cs" />
+    <Compile Include="StateSystem\Transition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

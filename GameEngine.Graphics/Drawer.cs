@@ -10,27 +10,27 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Graphics
 {
-    public class SceneDrawer : IDrawer
+    public class Drawer : IDrawer
     {
         private IWindowManager _windowManager;
 
-        private RenderWindow _mainWindow { get => _windowManager.GetGameWindow().MainWindow; }
+        private RenderWindow MainWindow { get => _windowManager.GetGameWindow().MainWindow; }
 
-        public SceneDrawer(IWindowManager windowManager)
+        public Drawer(IWindowManager windowManager)
         {
             _windowManager = windowManager;
         }
 
         public void Draw(Drawable drawableObject)
         {
-            _mainWindow.Draw(drawableObject);
+            MainWindow.Draw(drawableObject);
         }
 
         public void Draw(IList<Drawable> drawableObjectList)
         {
             foreach (var drawableObject in drawableObjectList)
             {
-                _mainWindow.Draw(drawableObject);
+                MainWindow.Draw(drawableObject);
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
+using SFML.System;
 
 namespace GameEngine.GameObjects.Entities
 {
@@ -11,23 +12,43 @@ namespace GameEngine.GameObjects.Entities
     public class Scene
     {
         public string Name { get; set; }
-        public bool IsPause { get; set; }
-        public int RenderPriority { get; set; }
-
-        public IList<Chunk> Chunks { get; set; }
+        public IList<BaseEntity> Entities { get; set; }
 
         public Scene()
         {
             //Load();
-            var chunk = new Chunk();
-            chunk.Entities.Add(new TextBox());
-            Chunks = new List<Chunk> { chunk };
-
             Name = "MainMenu";
-
-            IsPause = false;
+            Entities = new List<BaseEntity>
+            {
+                new DynamicEntity
+                {
+                    Figures = new List<Drawable>
+                    {
+                        new CircleShape(80),
+                        new RectangleShape(new Vector2f(200, 10))
+                    }
+                },
+                new TextBox
+                {
+                    Figures = new List<Drawable>
+                    {
+                        new RectangleShape
+                        {
+                            Size = new Vector2f(100, 40),
+                            Position = new Vector2f(2, 2),
+                            FillColor = Color.Transparent,
+                            OutlineColor = Color.Red,
+                            OutlineThickness = 2
+                        },
+                        new Text
+                        {
+                            FillColor = Color.Blue,
+                            Font = new Font("COMIC.TTF"),
+                            DisplayedString = "Test text"
+                        }
+                    }
+                }
+            };
         }
-
-        public void TogglePause() => IsPause = !IsPause;
     }
 }

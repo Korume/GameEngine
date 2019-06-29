@@ -13,25 +13,5 @@ namespace GameEngine.GameObjects.Entities
         public StaticEntity() : base()
         {
         }
-
-        public override void OnKeyPressed(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnMouseButtonPressed(object sender, MouseButtonEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnTextEntered(object sender, TextEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Update()
-        {
-
-        }
     }
 }

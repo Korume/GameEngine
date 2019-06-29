@@ -31,11 +31,15 @@ namespace GameEngine.Core
 
         public void StartMainCycle()
         {
-            //_sceneManager.AddSceneToStorage(new Scene());
+            //_sceneManager.AddSceneToStorage("MainMenu");
 
-            _sceneManager.AddSceneToStorage("MainMenu");
+            _sceneManager.AddSceneToStorage(new Scene());
+            _sceneManager.SaveSceneToFile("MainMenu");
 
-            //_sceneManager.SaveSceneToFile("MainMenu");
+            //var textBox = new DynamicEntity();
+            //textBox.Figures.Add(new TextBox());
+            //new DataAccess.Binary.BinaryBaseEntityProvider().Save(textBox);
+
             (_sceneManager as SceneManager).AddHandlers(MainWindow); // to do переделать этот метод
 
             while (MainWindow.IsOpen)
